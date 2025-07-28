@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: django-ip-tracker
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn iptracker.wsgi:application"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: iptracker.settings
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ALLOWED_HOSTS
+        value: .onrender.com
+      - key: DEBUG
+        value: "False"
